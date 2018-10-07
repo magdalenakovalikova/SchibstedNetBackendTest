@@ -41,6 +41,7 @@ namespace SchibstedBackendTest.Filters
                 var userId = provider.Authenticate(username, password);
                 if (userId != null)
                 {
+                    //
                     var basicAuthenticationIdentity = Thread.CurrentPrincipal.Identity as BasicAuthenticationIdentity;
                     if (basicAuthenticationIdentity != null)
                         basicAuthenticationIdentity.UserId = userId;

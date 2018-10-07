@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchibstedBackendTest.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,7 +16,15 @@ namespace SchibstedBackendTest.Filters
 {
     public class IdentityBasicAuthenticationAttribute : System.Attribute, System.Web.Http.Filters.IAuthenticationFilter
     {
-        public bool AllowMultiple => throw new NotImplementedException();
+
+        public bool AllowMultiple
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// AuthenticateAsync authenticates the request by validating credentials in the request, if present.
         /// </summary>
@@ -58,7 +67,7 @@ namespace SchibstedBackendTest.Filters
             string userName = userNameAndPasword.Item1;
             string password = userNameAndPasword.Item2;
 
-            IPrincipal principal = await AuthenticateAsync(userName, password, cancellationToken);
+            IPrincipal principal = await AuthenticateAsync(userName, password, context, cancellationToken);
             if (principal == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
@@ -71,18 +80,29 @@ namespace SchibstedBackendTest.Filters
             }
         }
 
-        private async Task<IPrincipal> AuthenticateAsync(string userName, string password, CancellationToken cancellationToken)
+        private async Task<IPrincipal> AuthenticateAsync(string userName, string password, HttpAuthenticationContext actionContext, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            if (userName != "foo" || password != "bar")
+            //if (userName != "foo" || password != "bar")
+            //{
+            //    // No user with userName/password exists.
+            //    return null;
+            //}
+            var provider = actionContext.ActionContext.ControllerContext.Configuration
+                               .DependencyResolver.GetService(typeof(IUserServices)) as IUserServices;
+            if (provider == null)
             {
-                // No user with userName/password exists.
                 return null;
             }
+                var userId = provider.Authenticate(userName, password);
+                if (userId == null)
+                {
+                    return null;
+                }
 
-            // Create a ClaimsIdentity with all the claims for this user.
-            Claim nameClaim = new Claim(ClaimTypes.Name, userName);
+                    // Create a ClaimsIdentity with all the claims for this user.
+                    Claim nameClaim = new Claim(ClaimTypes.Name, userName);
             List<Claim> claims = new List<Claim> { nameClaim };
 
             // important to set the identity this way, otherwise IsAuthenticated will be false

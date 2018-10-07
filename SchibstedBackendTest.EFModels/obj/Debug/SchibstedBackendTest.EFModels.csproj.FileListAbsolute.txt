@@ -1,0 +1,11 @@
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\SchibstedBackendTest.EFModels.dll.config
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\SchibstedBackendTest.EFModels.dll
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\SchibstedBackendTest.EFModels.pdb
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\EntityFramework.dll
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\EntityFramework.xml
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\obj\Debug\SchibstedBackendTest.EFModels.csproj.CoreCompileInputs.cache
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\obj\Debug\SchibstedBackendTest.EFModels.csproj.CopyComplete
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\obj\Debug\SchibstedBackendTest.EFModels.dll
+C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest.EFModels\obj\Debug\SchibstedBackendTest.EFModels.pdb

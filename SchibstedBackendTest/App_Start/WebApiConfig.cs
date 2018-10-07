@@ -28,6 +28,7 @@ namespace SchibstedBackendTest
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Filters.Add(new ApiAuthenticationFilter());
+            config.Filters.Add(new IdentityBasicAuthenticationAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -48,7 +49,7 @@ namespace SchibstedBackendTest
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
                 new HierarchicalLifetimeManager());
 
-            container.RegisterType<AccountController>(
+            container.RegisterType<AccountApiController>(
                 new InjectionConstructor());
             //
 
