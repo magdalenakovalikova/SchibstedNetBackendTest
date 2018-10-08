@@ -49,53 +49,55 @@ namespace SchibstedBackendTest.Tests.Controllers
             //Assert.AreEqual("value2", users.ElementAt(1));
         }
 
-        [TestMethod]
-        public void GetById()
-        {
-            // Arrange
-            UsersController controller = new UsersController();
+        //[TestMethod]
+        //public void GetById()
+        //{
+        //    // Arrange
+        //    UsersController controller = new UsersController();
+        //    controller.Request = new HttpRequestMessage();
+        //    controller.Configuration = new HttpConfiguration();
 
-            // Act
-            HttpResponseMessage result = controller.Get("admin");
+        //    // Act
+        //    HttpResponseMessage result = controller.Get("admin");
 
-            // Assert
-            Assert.AreEqual("value", result);
-        }
+        //    // Assert
+        //    Assert.AreEqual("value", result);
+        //}
 
-        [TestMethod]
-        public void Post()
-        {
-            // Arrange
-            UsersController controller = new UsersController();
+        //[TestMethod]
+        //public void Post()
+        //{
+        //    // Arrange
+        //    UsersController controller = new UsersController();
 
-            // Act
-            controller.Post(null);
+        //    // Act
+        //    controller.Post(null);
 
-            // Assert
-        }
+        //    // Assert
+        //}
 
-        [TestMethod]
-        public void Put()
-        {
-            // Arrange
-            UsersController controller = new UsersController();
+        //[TestMethod]
+        //public void Put()
+        //{
+        //    // Arrange
+        //    UsersController controller = new UsersController();
 
-            // Act
-            controller.Put(5, "value");
+        //    // Act
+        //    controller.Put(5, "value");
 
-            // Assert
-        }
+        //    // Assert
+        //}
 
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            UsersController controller = new UsersController();
+        //[TestMethod]
+        //public void Delete()
+        //{
+        //    // Arrange
+        //    UsersController controller = new UsersController();
 
-            // Act
-            controller.Delete(5);
+        //    // Act
+        //    controller.Delete(5);
 
-            // Assert
-        }
+        //    // Assert
+        //}
     }
 }

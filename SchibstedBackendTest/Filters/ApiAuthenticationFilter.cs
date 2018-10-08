@@ -1,6 +1,6 @@
-﻿using System.Threading;
+﻿using SchibstedBackendTest.Services;
+using System.Threading;
 using System.Web.Http.Controllers;
-using SchibstedBackendTest.Services;
 
 namespace SchibstedBackendTest.Filters
 {

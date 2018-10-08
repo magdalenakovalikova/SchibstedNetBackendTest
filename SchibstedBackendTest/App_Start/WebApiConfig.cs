@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
 using SchibstedBackendTest.Controllers;
 using SchibstedBackendTest.Filters;
 using SchibstedBackendTest.Models;
 using SchibstedBackendTest.Services;
+using System.Data.Entity;
+using System.Web.Http;
+using System.Web.Mvc;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
@@ -49,8 +44,8 @@ namespace SchibstedBackendTest
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
                 new HierarchicalLifetimeManager());
 
-            container.RegisterType<AccountApiController>(
-                new InjectionConstructor());
+            //container.RegisterType<AccountApiController>(
+            //    new InjectionConstructor());
             //
 
             UnityResolver unityResolver = new UnityResolver(container);

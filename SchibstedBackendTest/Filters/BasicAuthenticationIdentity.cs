@@ -11,14 +11,16 @@ namespace SchibstedBackendTest.Filters
         /// Get/Set for password
         /// </summary>
         public string Password { get; set; }
+
         /// <summary>
         /// Get/Set for UserName
         /// </summary>
         public string UserName { get; set; }
+
         /// <summary>
         /// Get/Set for UserId
         /// </summary>
-        public /*int*/string UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Basic Authentication Identity Constructor
@@ -32,5 +34,4 @@ namespace SchibstedBackendTest.Filters
             UserName = userName;
         }
     }
-
 }

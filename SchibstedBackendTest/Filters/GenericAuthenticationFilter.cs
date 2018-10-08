@@ -12,7 +12,6 @@ namespace SchibstedBackendTest.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class GenericAuthenticationFilter : AuthorizationFilterAttribute
     {
-
         /// <summary>
         /// Public default Constructor
         /// </summary>
@@ -84,7 +83,6 @@ namespace SchibstedBackendTest.Filters
             var credentials = authHeaderValue.Split(':');
             return credentials.Length < 2 ? null : new BasicAuthenticationIdentity(credentials[0], credentials[1]);
         }
-
 
         /// <summary>
         /// Send the Authentication Challenge request

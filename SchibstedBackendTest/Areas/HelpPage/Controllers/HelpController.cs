@@ -1,8 +1,8 @@
+using SchibstedBackendTest.Areas.HelpPage.ModelDescriptions;
+using SchibstedBackendTest.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using SchibstedBackendTest.Areas.HelpPage.ModelDescriptions;
-using SchibstedBackendTest.Areas.HelpPage.Models;
 
 namespace SchibstedBackendTest.Areas.HelpPage.Controllers
 {

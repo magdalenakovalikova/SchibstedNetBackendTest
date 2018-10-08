@@ -32,6 +32,7 @@ namespace SchibstedBackendTest.Controllers
             }
             return View(users.OrderBy(u => u.username));
         }
+
         [Authorize(Roles = "PAGE_1")]
         public ActionResult Page1()
         {
@@ -39,6 +40,7 @@ namespace SchibstedBackendTest.Controllers
 
             return View();
         }
+
         [Authorize(Roles = "PAGE_2")]
         public ActionResult Page2()
         {
@@ -46,6 +48,7 @@ namespace SchibstedBackendTest.Controllers
 
             return View();
         }
+
         [Authorize(Roles = "PAGE_3")]
         public ActionResult Page3()
         {

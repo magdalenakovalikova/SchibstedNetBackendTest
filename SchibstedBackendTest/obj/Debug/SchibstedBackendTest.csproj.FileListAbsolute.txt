@@ -292,4 +292,3 @@ C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\Schi
 C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest\obj\Debug\SchibstedBackendTest.csproj.CopyComplete
 C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest\obj\Debug\SchibstedBackendTest.dll
 C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest\obj\Debug\SchibstedBackendTest.pdb
-C:\Users\magdalena.kovalikova\source\repos\20181004\SchibstedNetBackendTest\SchibstedBackendTest\SchibstedBackendTest\obj\Debug\SchibstedBackendTest.csprojAssemblyReference.cache

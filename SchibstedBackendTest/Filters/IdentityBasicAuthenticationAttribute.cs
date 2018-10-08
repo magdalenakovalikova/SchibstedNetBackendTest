@@ -1,7 +1,6 @@
 ﻿using SchibstedBackendTest.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -9,14 +8,12 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http.Filters;
 
 namespace SchibstedBackendTest.Filters
 {
     public class IdentityBasicAuthenticationAttribute : System.Attribute, System.Web.Http.Filters.IAuthenticationFilter
     {
-
         public bool AllowMultiple
         {
             get
@@ -43,7 +40,7 @@ namespace SchibstedBackendTest.Filters
                 return;
             }
 
-            // 3. If there are credentials but the filter does not recognize the 
+            // 3. If there are credentials but the filter does not recognize the
             //    authentication scheme, do nothing.
             if (authorization.Scheme != "Basic")
             {
@@ -95,14 +92,14 @@ namespace SchibstedBackendTest.Filters
             {
                 return null;
             }
-                var userId = provider.Authenticate(userName, password);
-                if (userId == null)
-                {
-                    return null;
-                }
+            var userId = provider.Authenticate(userName, password);
+            if (userId == null)
+            {
+                return null;
+            }
 
-                    // Create a ClaimsIdentity with all the claims for this user.
-                    Claim nameClaim = new Claim(ClaimTypes.Name, userName);
+            // Create a ClaimsIdentity with all the claims for this user.
+            Claim nameClaim = new Claim(ClaimTypes.Name, userName);
             List<Claim> claims = new List<Claim> { nameClaim };
 
             // important to set the identity this way, otherwise IsAuthenticated will be false

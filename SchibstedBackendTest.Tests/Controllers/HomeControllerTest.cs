@@ -1,7 +1,6 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SchibstedBackendTest;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SchibstedBackendTest.Controllers;
+using System.Web.Mvc;
 
 namespace SchibstedBackendTest.Tests.Controllers
 {
