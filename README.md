@@ -12,11 +12,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 3. Login with credentials admin/12345678, user with ADMIN permission for creation/modification and deletion of users and their permissions.
 
-API description can be displayed by clicking on 'API' link.
+4. API description can be displayed by clicking on 'API' link.
 
-4. API funcionalities also can be viewed and tested  by clicking on 'SWAGGER' link.
+5. API funcionalities also can be viewed and tested  by clicking on 'SWAGGER' link.
 
-5. Database file .mdf is included solution App_Data folder. It can be recreated by setting AutomaticMigrationsEnabled = true; in Migrations/Configuration.cs file and package manager console command 'update-database'.
+6. Database file .mdf is included solution App_Data folder. It can be recreated by setting AutomaticMigrationsEnabled = true; in Migrations/Configuration.cs file and package manager console command 'update-database'.
 
 
 ### Prerequisites
