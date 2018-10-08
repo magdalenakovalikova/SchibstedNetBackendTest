@@ -38,7 +38,7 @@ Visual Studio (it's tested on VS2017 Professional)
 
 
 ## Running the tests
-In te Test Explorer window click on Run All.
+In Test Explorer window click on Run All.
 
 ## Deployment
 
