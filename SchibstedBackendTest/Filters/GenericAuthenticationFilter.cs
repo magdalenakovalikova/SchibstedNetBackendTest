@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -12,28 +14,17 @@ namespace SchibstedBackendTest.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class GenericAuthenticationFilter : AuthorizationFilterAttribute
     {
-        /// <summary>
-        /// Public default Constructor
-        /// </summary>
         public GenericAuthenticationFilter()
         {
         }
 
         private readonly bool _isActive = true;
 
-        /// <summary>
-        /// parameter isActive explicitly enables/disables this filetr.
-        /// </summary>
-        /// <param name="isActive"></param>
         public GenericAuthenticationFilter(bool isActive)
         {
             _isActive = isActive;
         }
 
-        /// <summary>
-        /// Checks basic authentication request
-        /// </summary>
-        /// <param name="filterContext"></param>
         public override void OnAuthorization(HttpActionContext filterContext)
         {
             if (!_isActive) return;
@@ -50,16 +41,18 @@ namespace SchibstedBackendTest.Filters
                 ChallengeAuthRequest(filterContext);
                 return;
             }
+
+            Claim nameClaim = new Claim(ClaimTypes.Name, identity.Name);
+            List<Claim> claims = new List<Claim> { nameClaim };
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Basic");
+
+            var principal = new ClaimsPrincipal(claimsIdentity);
+            Thread.CurrentPrincipal = principal;
+
             base.OnAuthorization(filterContext);
         }
 
-        /// <summary>
-        /// Virtual method.Can be overriden with the custom Authorization.
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="pass"></param>
-        /// <param name="filterContext"></param>
-        /// <returns></returns>
         protected virtual bool OnAuthorizeUser(string user, string pass, HttpActionContext filterContext)
         {
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
@@ -67,10 +60,6 @@ namespace SchibstedBackendTest.Filters
             return true;
         }
 
-        /// <summary>
-        /// Checks for autrhorization header in the request and parses it, creates user credentials and returns as BasicAuthenticationIdentity
-        /// </summary>
-        /// <param name="filterContext"></param>
         protected virtual BasicAuthenticationIdentity FetchAuthHeader(HttpActionContext filterContext)
         {
             string authHeaderValue = null;
@@ -84,10 +73,6 @@ namespace SchibstedBackendTest.Filters
             return credentials.Length < 2 ? null : new BasicAuthenticationIdentity(credentials[0], credentials[1]);
         }
 
-        /// <summary>
-        /// Send the Authentication Challenge request
-        /// </summary>
-        /// <param name="filterContext"></param>
         private static void ChallengeAuthRequest(HttpActionContext filterContext)
         {
             var dnsHost = filterContext.Request.RequestUri.DnsSafeHost;

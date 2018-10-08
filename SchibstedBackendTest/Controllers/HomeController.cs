@@ -1,4 +1,5 @@
-﻿using SchibstedBackendTest.Enums;
+﻿using SchibstedBackendTest.EFModels;
+using SchibstedBackendTest.Enums;
 using SchibstedBackendTest.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,7 +24,6 @@ namespace SchibstedBackendTest.Controllers
                 users.Add(new UserViewModel()
                 {
                     username = user.UserName,
-                    //roles = user.Roles.Select(r => r.RoleId).ToArray(),
                     IsADMIN = user.Roles.Any(r => r.RoleId == AspNetRolesEnum.ADMIN),
                     IsPAGE_1 = user.Roles.Any(r => r.RoleId == AspNetRolesEnum.PAGE_1),
                     IsPAGE_2 = user.Roles.Any(r => r.RoleId == AspNetRolesEnum.PAGE_2),

@@ -22,33 +22,21 @@ namespace SchibstedBackendTest.Filters
             }
         }
 
-        /// <summary>
-        /// AuthenticateAsync authenticates the request by validating credentials in the request, if present.
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            // 1. Look for credentials in the request.
             HttpRequestMessage request = context.Request;
             AuthenticationHeaderValue authorization = request.Headers.Authorization;
 
-            // 2. If there are no credentials, do nothing.
             if (authorization == null)
             {
                 return;
             }
 
-            // 3. If there are credentials but the filter does not recognize the
-            //    authentication scheme, do nothing.
             if (authorization.Scheme != "Basic")
             {
                 return;
             }
 
-            // 4. If there are credentials that the filter understands, try to validate them.
-            // 5. If the credentials are bad, set the error result.
             if (String.IsNullOrEmpty(authorization.Parameter))
             {
                 context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
@@ -69,8 +57,6 @@ namespace SchibstedBackendTest.Filters
             {
                 context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
             }
-
-            // 6. If the credentials are valid, set principal.
             else
             {
                 context.Principal = principal;
@@ -81,13 +67,8 @@ namespace SchibstedBackendTest.Filters
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            //if (userName != "foo" || password != "bar")
-            //{
-            //    // No user with userName/password exists.
-            //    return null;
-            //}
             var provider = actionContext.ActionContext.ControllerContext.Configuration
-                               .DependencyResolver.GetService(typeof(IUserServices)) as IUserServices;
+.DependencyResolver.GetService(typeof(IUserServices)) as IUserServices;
             if (provider == null)
             {
                 return null;
@@ -98,13 +79,10 @@ namespace SchibstedBackendTest.Filters
                 return null;
             }
 
-            // Create a ClaimsIdentity with all the claims for this user.
             Claim nameClaim = new Claim(ClaimTypes.Name, userName);
             List<Claim> claims = new List<Claim> { nameClaim };
 
-            // important to set the identity this way, otherwise IsAuthenticated will be false
-            // see: http://leastprivilege.com/2012/09/24/claimsidentity-isauthenticated-and-authenticationtype-in-net-4-5/
-            ClaimsIdentity identity = new ClaimsIdentity(claims, /*AuthenticationTypes.*/"Basic");
+            ClaimsIdentity identity = new ClaimsIdentity(claims, "Basic");
 
             var principal = new ClaimsPrincipal(identity);
             return principal;
@@ -123,13 +101,8 @@ namespace SchibstedBackendTest.Filters
                 return null;
             }
 
-            // The currently approved HTTP 1.1 specification says characters here are ISO-8859-1.
-            // However, the current draft updated specification for HTTP 1.1 indicates this encoding is infrequently
-            // used in practice and defines behavior only for ASCII.
             Encoding encoding = Encoding.ASCII;
-            // Make a writable copy of the encoding to enable setting a decoder fallback.
             encoding = (Encoding)encoding.Clone();
-            // Fail on invalid bytes rather than silently replacing and continuing.
             encoding.DecoderFallback = DecoderFallback.ExceptionFallback;
             string decodedCredentials;
 
@@ -159,12 +132,6 @@ namespace SchibstedBackendTest.Filters
             return new Tuple<string, string>(userName, password);
         }
 
-        /// <summary>
-        /// ChallengeAsync adds an authentication challenge to the HTTP response, if needed.
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
         {
             var challenge = new AuthenticationHeaderValue("Basic");

@@ -2,9 +2,6 @@ using System;
 
 namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
 {
-    /// <summary>
-    /// Describes a type model.
-    /// </summary>
     public abstract class ModelDescription
     {
         public string Documentation { get; set; }

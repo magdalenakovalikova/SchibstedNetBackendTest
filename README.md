@@ -6,18 +6,20 @@ This is a MVC WEB API 2 application with Home page accessible to registered user
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-1. Clone the solution
-
-2. Compile the solution in Visual Studio
-
-3. Login with credentials admin/12345678, user with ADMIN permission for creation/modification and deletion of users and their permissions.
-
-4. API description can be displayed by clicking on 'API' link.
-
-5. API funcionalities also can be viewed and tested  by clicking on 'SWAGGER' link.
-
-6. Database file .mdf is included solution App_Data folder. It can be recreated by setting AutomaticMigrationsEnabled = true; in Migrations/Configuration.cs file and package manager console command 'update-database'.
-
+To get started in the Team Explorer, Manage Connections, clone a Git repository https://github.com/magdalenakovalikova/SchibstedNetBackendTest.git to local Git repository. Recursively.
+Open Solution SchibstedBackendTest.sln
+Assuming that LocalDB is installed, to recreate the database file follow these steps:
+·         In the Solution Explorer click on Show All Files icon right click an existing .mdf file and then delete it.
+·         In the Package Manager Console window set as Default project SchibstedBackendTest.EFModels and run command
+```
+update-database
+```
+Then run the application with Ctrl-F5
+To access to pages Home, Page 1, Page 2, Page 3 log in as admin, user1, user2 or user3 username respectively. Use the "secret" test password is 12345678.
+·         Home (Users list): Is accessible to all registered users -> admin, user1, user2, user3
+·         Page 1: To access this page, the logged user needs to have the role PAGE_1 -> user1
+·         Page 2: To access this page, the logged user needs to have the role PAGE_2 -> user2
+·         Page 3: To access this page, the logged user needs to have the role PAGE_3 -> user3
 
 ### Prerequisites
 

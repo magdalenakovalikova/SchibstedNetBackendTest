@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
-using SchibstedBackendTest.Controllers;
+using SchibstedBackendTest.EFModels;
+using SchibstedBackendTest.EFModels.Models;
 using SchibstedBackendTest.Filters;
-using SchibstedBackendTest.Models;
 using SchibstedBackendTest.Services;
 using System.Data.Entity;
 using System.Web.Http;
 using System.Web.Mvc;
 using Unity;
-using Unity.Injection;
 using Unity.Lifetime;
 
 namespace SchibstedBackendTest
@@ -18,14 +17,11 @@ namespace SchibstedBackendTest
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Filters.Add(new ApiAuthenticationFilter());
             config.Filters.Add(new IdentityBasicAuthenticationAttribute());
 
-            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -36,17 +32,12 @@ namespace SchibstedBackendTest
 
             var container = new UnityContainer();
             container.RegisterType<IUserServices, UserServices>();
-            //
             container.RegisterType<DbContext, ApplicationDbContext>(
-    new HierarchicalLifetimeManager());
+new HierarchicalLifetimeManager());
             container.RegisterType<UserManager<ApplicationUser>>(
                 new HierarchicalLifetimeManager());
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
                 new HierarchicalLifetimeManager());
-
-            //container.RegisterType<AccountApiController>(
-            //    new InjectionConstructor());
-            //
 
             UnityResolver unityResolver = new UnityResolver(container);
             config.DependencyResolver = unityResolver;

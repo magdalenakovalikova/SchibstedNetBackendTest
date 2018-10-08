@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchibstedBackendTest", "Sch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchibstedBackendTest.Tests", "SchibstedBackendTest.Tests\SchibstedBackendTest.Tests.csproj", "{75D0E455-3967-4191-81A0-D7984DEB6E54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchibstedBackendTest.EFModels", "SchibstedBackendTest.EFModels\SchibstedBackendTest.EFModels.csproj", "{B3ACB934-94AC-4191-A7A9-7D004D7C76D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{75D0E455-3967-4191-81A0-D7984DEB6E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D0E455-3967-4191-81A0-D7984DEB6E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D0E455-3967-4191-81A0-D7984DEB6E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3ACB934-94AC-4191-A7A9-7D004D7C76D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3ACB934-94AC-4191-A7A9-7D004D7C76D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3ACB934-94AC-4191-A7A9-7D004D7C76D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3ACB934-94AC-4191-A7A9-7D004D7C76D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

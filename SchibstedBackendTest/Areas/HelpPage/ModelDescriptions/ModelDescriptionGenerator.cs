@@ -13,12 +13,8 @@ using System.Xml.Serialization;
 
 namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
 {
-    /// <summary>
-    /// Generates model descriptions for given types.
-    /// </summary>
     public class ModelDescriptionGenerator
     {
-        // Modify this to support more data annotation attributes.
         private readonly IDictionary<Type, Func<object, string>> AnnotationTextGenerator = new Dictionary<Type, Func<object, string>>
         {
             { typeof(RequiredAttribute), a => "Required" },
@@ -60,7 +56,6 @@ namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
             },
         };
 
-        // Modify this to add more default documentations.
         private readonly IDictionary<Type, string> DefaultTypeDocumentation = new Dictionary<Type, string>
         {
             { typeof(Int16), "integer" },
@@ -201,7 +196,6 @@ namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
             return GenerateComplexTypeModelDescription(modelType);
         }
 
-        // Change this to provide different name for the member.
         private static string GetMemberName(MemberInfo member, bool hasDataContractAttribute)
         {
             JsonPropertyAttribute jsonProperty = member.GetCustomAttribute<JsonPropertyAttribute>();
@@ -234,19 +228,12 @@ namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
                 member.GetCustomAttribute<EnumMemberAttribute>() != null :
                 member.GetCustomAttribute<DataMemberAttribute>() != null;
 
-            // Display member only if all the followings are true:
-            // no JsonIgnoreAttribute
-            // no XmlIgnoreAttribute
-            // no IgnoreDataMemberAttribute
-            // no NonSerializedAttribute
-            // no ApiExplorerSettingsAttribute with IgnoreApi set to true
-            // no DataContractAttribute without DataMemberAttribute or EnumMemberAttribute
             return jsonIgnore == null &&
-                xmlIgnore == null &&
-                ignoreDataMember == null &&
-                nonSerialized == null &&
-                (apiExplorerSetting == null || !apiExplorerSetting.IgnoreApi) &&
-                (!hasDataContractAttribute || hasMemberAttribute);
+xmlIgnore == null &&
+ignoreDataMember == null &&
+nonSerialized == null &&
+(apiExplorerSetting == null || !apiExplorerSetting.IgnoreApi) &&
+(!hasDataContractAttribute || hasMemberAttribute);
         }
 
         private string CreateDefaultDocumentation(Type type)
@@ -283,22 +270,19 @@ namespace SchibstedBackendTest.Areas.HelpPage.ModelDescriptions
                 }
             }
 
-            // Rearrange the annotations
             annotations.Sort((x, y) =>
-            {
-                // Special-case RequiredAttribute so that it shows up on top
-                if (x.AnnotationAttribute is RequiredAttribute)
-                {
-                    return -1;
-                }
-                if (y.AnnotationAttribute is RequiredAttribute)
-                {
-                    return 1;
-                }
+{
+    if (x.AnnotationAttribute is RequiredAttribute)
+    {
+        return -1;
+    }
+    if (y.AnnotationAttribute is RequiredAttribute)
+    {
+        return 1;
+    }
 
-                // Sort the rest based on alphabetic order of the documentation
-                return String.Compare(x.Documentation, y.Documentation, StringComparison.OrdinalIgnoreCase);
-            });
+    return String.Compare(x.Documentation, y.Documentation, StringComparison.OrdinalIgnoreCase);
+});
 
             foreach (ParameterAnnotation annotation in annotations)
             {

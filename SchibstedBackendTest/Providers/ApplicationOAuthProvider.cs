@@ -2,7 +2,7 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using SchibstedBackendTest.Models;
+using SchibstedBackendTest.EFModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -59,7 +59,6 @@ namespace SchibstedBackendTest.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Resource owner password credentials does not provide a client ID.
             if (context.ClientId == null)
             {
                 context.Validated();

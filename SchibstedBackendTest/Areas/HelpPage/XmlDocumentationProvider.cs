@@ -9,9 +9,6 @@ using System.Xml.XPath;
 
 namespace SchibstedBackendTest.Areas.HelpPage
 {
-    /// <summary>
-    /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
-    /// </summary>
     public class XmlDocumentationProvider : IDocumentationProvider, IModelDocumentationProvider
     {
         private XPathNavigator _documentNavigator;
@@ -21,10 +18,6 @@ namespace SchibstedBackendTest.Areas.HelpPage
         private const string FieldExpression = "/doc/members/member[@name='F:{0}']";
         private const string ParameterExpression = "param[@name='{0}']";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlDocumentationProvider"/> class.
-        /// </summary>
-        /// <param name="documentPath">The physical path to XML document.</param>
         public XmlDocumentationProvider(string documentPath)
         {
             if (documentPath == null)
@@ -139,19 +132,16 @@ namespace SchibstedBackendTest.Areas.HelpPage
             string name = type.FullName;
             if (type.IsGenericType)
             {
-                // Format the generic type name to something like: Generic{System.Int32,System.String}
                 Type genericType = type.GetGenericTypeDefinition();
                 Type[] genericArguments = type.GetGenericArguments();
                 string genericTypeName = genericType.FullName;
 
-                // Trim the generic parameter counts from the name
                 genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf('`'));
                 string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
                 name = String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", genericTypeName, String.Join(",", argumentTypeNames));
             }
             if (type.IsNested)
             {
-                // Changing the nested type name from OuterType+InnerType to OuterType.InnerType to match the XML documentation syntax.
                 name = name.Replace("+", ".");
             }
 

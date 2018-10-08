@@ -2,9 +2,6 @@ using System;
 
 namespace SchibstedBackendTest.Areas.HelpPage
 {
-    /// <summary>
-    /// This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
-    /// </summary>
     public class TextSample
     {
         public TextSample(string text)
