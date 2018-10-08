@@ -27,11 +27,10 @@ Use the "secret" test password is 12345678. :)
  - Page 3: To access this page, the logged user needs to have the role PAGE_3 -> user3
 ```
 
-```
  API description can be displayed by clicking on 'API' link.
 
  API funcionalities also can be viewed and tested  by clicking on 'SWAGGER' link.
- 
+``` 
 Create = post /api/users
 Read = get /api/users
 Read = get /api/users/{id} 
